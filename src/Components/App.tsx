@@ -12,7 +12,7 @@ import {
 } from "@react-google-maps/api";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const libraries = ["places"];
 
@@ -47,7 +47,20 @@ export default function App() {
   const [yourPlace, setYourPlace] = useState<any>(undefined);
   const [theirPlace, setTheirPlace] = useState<any>(undefined);
 
-  console.log("yourPlace", yourPlace);
+  useEffect(() => {
+    if (yourPlace && theirPlace) {
+      setMapCenter({
+        lat:
+          (yourPlace.geometry.location.lat() +
+            theirPlace.geometry.location.lat()) /
+          2,
+        lng:
+          (yourPlace.geometry.location.lng() +
+            theirPlace.geometry.location.lng()) /
+          2,
+      });
+    }
+  }, [yourPlace, theirPlace]);
 
   return isLoaded ? (
     <Container maxWidth={false} disableGutters={true}>
@@ -72,10 +85,3 @@ export default function App() {
     <div>Loading...</div>
   );
 }
-
-const areBothLocationsSet = (yourPlace: any, theirPlace: any) => {
-  console.log("are both locations set?");
-  console.log(yourPlace);
-  console.log(theirPlace);
-  return yourPlace && theirPlace;
-};
