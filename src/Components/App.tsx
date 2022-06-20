@@ -1,5 +1,6 @@
 import * as React from "react";
 import Container from "@mui/material/Container";
+// import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-url";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import {
@@ -11,17 +12,25 @@ import {
 } from "@react-google-maps/api";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
+import { useState } from "react";
+
+const libraries = ["places"];
 
 export default function App() {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY!,
-    libraries: ["places"],
+    // @ts-ignore
+    libraries,
   });
 
   const { width, height } = useWindowDimensions();
+  const [mapCenter, setMapCenter] = useState<{
+    lat: number;
+    lng: number;
+  }>({ lat: 48.397, lng: 2.644 });
 
   const googleMapProps: GoogleMapProps = {
-    center: { lat: 48.397, lng: 2.644 },
+    center: mapCenter,
     zoom: 15,
     mapContainerStyle: {
       width,
@@ -35,19 +44,38 @@ export default function App() {
     },
   };
 
+  const [yourPlace, setYourPlace] = useState<any>(undefined);
+  const [theirPlace, setTheirPlace] = useState<any>(undefined);
+
+  console.log("yourPlace", yourPlace);
+
   return isLoaded ? (
     <Container maxWidth={false} disableGutters={true}>
-      <Console />
+      <Console
+        {...{
+          yourPlace,
+          theirPlace,
+          handleYourPlaceChanged: (place: any) => {
+            setYourPlace(place);
+          },
+          handleTheirPlaceChanged: (place: any) => {
+            setTheirPlace(place);
+          },
+        }}
+      />
       <GoogleMap {...googleMapProps}>
         <Marker position={{ lat: 48.397, lng: 2.644 }} />
       </GoogleMap>
       <div>Map is here</div>
-      {/** */}
-      {/* <Typography variant="h4" component="h1" gutterBottom>
-          The next stop is Paddington Butthole 
-        </Typography> */}
     </Container>
   ) : (
     <div>Loading...</div>
   );
 }
+
+const areBothLocationsSet = (yourPlace: any, theirPlace: any) => {
+  console.log("are both locations set?");
+  console.log(yourPlace);
+  console.log(theirPlace);
+  return yourPlace && theirPlace;
+};
