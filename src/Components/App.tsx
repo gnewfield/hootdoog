@@ -7,6 +7,7 @@ import {
   GoogleMap,
   GoogleMapProps,
   Marker,
+  Autocomplete,
 } from "@react-google-maps/api";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
@@ -14,6 +15,7 @@ import { Console } from "./Console";
 export default function App() {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY!,
+    libraries: ["places"],
   });
 
   const { width, height } = useWindowDimensions();
