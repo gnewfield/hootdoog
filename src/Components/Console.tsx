@@ -1,4 +1,8 @@
-import { Autocomplete as MuiAutocomplete, TextField } from "@mui/material";
+import {
+  Autocomplete as MuiAutocomplete,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Autocomplete as MapsAutocomplete } from "@react-google-maps/api";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,35 +13,57 @@ import { useState } from "react";
 
 const Console = () => {
   const [yourLocation, setYourLocation] = useState<any>(undefined);
+  const [yourRawLocation, setYourRawLocation] = useState<any>(undefined);
   const [theirLocation, setTheirLocation] = useState<any>(undefined);
-  const [autocomplete, setAutocomplete] = useState<any>(undefined);
+  const [theirRawLocation, setTheirRawLocation] = useState<any>(undefined);
+  const [yourAutocomplete, setYourAutocomplete] = useState<any>(undefined);
+  const [theirAutocomplete, setTheirAutocomplete] = useState<any>(undefined);
 
   console.log("yourLocation", yourLocation);
 
   return (
     <Card>
-      <CardHeader></CardHeader>
+      <CardHeader>
+        <Typography variant="h4" component="h1" gutterBottom>
+          hootdoog time
+        </Typography>
+      </CardHeader>
       <CardContent>
         <MapsAutocomplete
           onPlaceChanged={() => {
-            const place = autocomplete.getPlace();
+            const place = yourAutocomplete.getPlace();
             setYourLocation(place);
           }}
           onLoad={(autocomplete) => {
-            setAutocomplete(autocomplete);
+            setYourAutocomplete(autocomplete);
+          }}
+        >
+          <TextField
+            onChange={(e) => {
+              setYourLocation(undefined);
+              setYourRawLocation(e.target.value);
+            }}
+            label="Your Location"
+            value={yourLocation?.formatted_address ?? yourRawLocation}
+          />
+        </MapsAutocomplete>
+        <br />
+        <MapsAutocomplete
+          onPlaceChanged={() => {
+            const place = theirAutocomplete.getPlace();
+            setTheirLocation(place);
+          }}
+          onLoad={(autocomplete) => {
+            setTheirAutocomplete(autocomplete);
           }}
         >
           <TextField
             label="Your Location"
-            value={yourLocation?.formatted_address ?? ""}
-          />
-        </MapsAutocomplete>
-        <br />
-        <MapsAutocomplete>
-          <TextField
-            label="Their Location"
-            value={theirLocation}
-            onChange={(e) => setTheirLocation(e.target.value)}
+            onChange={(e) => {
+              setTheirLocation(undefined);
+              setTheirRawLocation(e.target.value);
+            }}
+            value={theirLocation?.formatted_address ?? theirRawLocation}
           />
         </MapsAutocomplete>
       </CardContent>
