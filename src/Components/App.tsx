@@ -13,6 +13,9 @@ import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
 import { useEffect, useState } from "react";
 import GoogleMapPlaceType from "./GoogleMapPlaceType";
+import { convertCompilerOptionsFromJson } from "typescript";
+import { Typography } from "@mui/material";
+import { PlaceInfo } from "./PlaceInfo";
 
 const libraries = ["places", "geometry"];
 
@@ -34,6 +37,9 @@ export default function App() {
 
   // markers needs to be a dictionary so you can remove the old "your place marker"
   const [markers, setMarkers] = useState<MarkerProps[]>([]);
+
+  const [selectedPlace, setSelectedPlace] =
+    useState<google.maps.places.PlaceResult | null>(null);
 
   const [map, setMap] = useState<any>(null);
   const [nearbySearchResults, setNearbySearchResults] = useState<
@@ -115,11 +121,13 @@ export default function App() {
       const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
         .map((placeResult: google.maps.places.PlaceResult) => {
           if (placeResult.geometry) {
-            console.log(placeResult.name);
             return {
               position: placeResult?.geometry?.location!,
               title: placeResult?.name,
               animation: window.google.maps.Animation.DROP,
+              onClick: (e: google.maps.MapMouseEvent) => {
+                setSelectedPlace(placeResult);
+              },
               icon: {
                 url: placeResult.icon,
                 scaledSize: new window.google.maps.Size(15, 15),
@@ -163,12 +171,16 @@ export default function App() {
                   position: place.geometry.location,
                   title: "Their place",
                   clickable: true,
+                  onClick: (e) => {
+                    console.log(e);
+                  },
                 },
               ]);
             }
           },
         }}
       />
+      {selectedPlace && <PlaceInfo place={selectedPlace} />}
       <GoogleMap {...googleMapProps}>
         {[...new Set(markers)].map((marker) => (
           <Marker key={marker.title} {...marker} />

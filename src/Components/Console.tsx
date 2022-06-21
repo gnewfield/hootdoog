@@ -43,7 +43,7 @@ const Console = (props: ConsoleProps) => {
               handleYourPlaceChanged(undefined);
               setYourRawLocation(e.target.value);
             }}
-            label="Your Location"
+            label="Your place"
             value={yourPlace?.formatted_address ?? yourRawLocation}
           />
         </MapsAutocomplete>
@@ -58,7 +58,7 @@ const Console = (props: ConsoleProps) => {
           }}
         >
           <TextField
-            label="Your Location"
+            label="Their place"
             onChange={(e) => {
               handleTheirPlaceChanged(undefined);
               setTheirRawLocation(e.target.value);
