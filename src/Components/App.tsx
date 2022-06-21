@@ -9,12 +9,13 @@ import {
   GoogleMapProps,
   Marker,
   Autocomplete,
+  MarkerProps,
 } from "@react-google-maps/api";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
 import { useEffect, useState } from "react";
 
-const libraries = ["places"];
+const libraries = ["places", "geometry"];
 
 export default function App() {
   const { isLoaded } = useJsApiLoader({
@@ -29,9 +30,17 @@ export default function App() {
     lng: number;
   }>({ lat: 48.397, lng: 2.644 });
 
+  const [yourPlace, setYourPlace] = useState<any>(undefined);
+  const [theirPlace, setTheirPlace] = useState<any>(undefined);
+  const [markers, setMarkers] = useState<MarkerProps[]>([]);
+  const [map, setMap] = useState<any>(null);
+
   const googleMapProps: GoogleMapProps = {
     center: mapCenter,
     zoom: 15,
+    onLoad: (map) => {
+      setMap(map);
+    },
     mapContainerStyle: {
       width,
       height,
@@ -44,11 +53,20 @@ export default function App() {
     },
   };
 
-  const [yourPlace, setYourPlace] = useState<any>(undefined);
-  const [theirPlace, setTheirPlace] = useState<any>(undefined);
-
   useEffect(() => {
+    if (yourPlace) {
+      setMapCenter({
+        lat: yourPlace.geometry.location.lat(),
+        lng: yourPlace.geometry.location.lng(),
+      });
+    }
     if (yourPlace && theirPlace) {
+      // make the map fit the boundary
+      const bounds = new window.google.maps.LatLngBounds();
+      bounds.extend(yourPlace.geometry.location);
+      bounds.extend(theirPlace.geometry.location);
+      map.fitBounds(bounds);
+
       setMapCenter({
         lat:
           (yourPlace.geometry.location.lat() +
@@ -70,14 +88,35 @@ export default function App() {
           theirPlace,
           handleYourPlaceChanged: (place: any) => {
             setYourPlace(place);
+            if (place) {
+              setMarkers((prevState) => [
+                ...prevState,
+                {
+                  position: place.geometry.location,
+                  title: "Your place",
+                },
+              ]);
+            }
           },
           handleTheirPlaceChanged: (place: any) => {
             setTheirPlace(place);
+
+            if (place) {
+              setMarkers((prevState) => [
+                ...prevState,
+                {
+                  position: place.geometry.location,
+                  title: "Their place",
+                },
+              ]);
+            }
           },
         }}
       />
       <GoogleMap {...googleMapProps}>
-        <Marker position={{ lat: 48.397, lng: 2.644 }} />
+        {markers.map((marker) => (
+          <Marker key={marker.title} {...marker} />
+        ))}
       </GoogleMap>
       <div>Map is here</div>
     </Container>
