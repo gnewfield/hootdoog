@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import {
   useJsApiLoader,
   GoogleMap,
-  GoogleMapProps,
   Marker,
   MarkerProps,
 } from "@react-google-maps/api";
@@ -14,7 +13,6 @@ import GoogleMapPlaceType from "./GoogleMapPlaceType";
 import { PlaceInfo } from "./PlaceInfo";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { AppBar, Toolbar, Typography } from "@mui/material";
 import { findBestMatch } from "string-similarity";
 
 const libraries = ["places", "geometry"];
@@ -108,12 +106,7 @@ export default function App() {
   // change the api responses to have return usememo, as right now they're not returning
   // anything lol
   useEffect(() => {
-    console.log("nearby search results updated...");
-
     if (nearbySearchResults && nearbySearchResults?.length > 0) {
-      console.log(
-        "found a list of nearby search results. Creating markers and computing transit times."
-      );
       // distance matrix from yourPlace, theirPlace to all the found places
       // unfortunately we need the actual fastest way to get around, but can only toggle
       // one method of search at a time.
@@ -171,18 +164,13 @@ export default function App() {
 
   useEffect(() => {
     // create the assemblage of locations
-    console.log(nearbySearchResults);
-    console.log(distanceMatrixResponse);
     if (nearbySearchResults !== null && distanceMatrixResponse !== null) {
       const placeAssemblage = nearbySearchResults.map(
         (nearbySearchResult: google.maps.places.PlaceResult) => {
           const { vicinity } = nearbySearchResult;
-          console.log(vicinity);
-          console.log(distanceMatrixResponse.destinationAddresses);
 
           // it's fucking street vs st...
           // solution: use document distance
-
           if (vicinity) {
             const { bestMatchIndex: destinationIndex } = findBestMatch(
               vicinity,
@@ -195,7 +183,10 @@ export default function App() {
             }[] = distanceMatrixResponse.rows.map(
               (row: google.maps.DistanceMatrixResponseRow, index: number) => {
                 return {
-                  destination: distanceMatrixResponse.destinationAddresses[destinationIndex], // this is mainly for sanity
+                  destination:
+                    distanceMatrixResponse.destinationAddresses[
+                      destinationIndex
+                    ], // this is mainly for sanity
                   origin: distanceMatrixResponse.originAddresses[index],
                   times: row.elements[destinationIndex],
                 };
@@ -213,8 +204,6 @@ export default function App() {
       setPlaceAssemblage(placeAssemblage);
     }
   }, [nearbySearchResults, distanceMatrixResponse]);
-
-  console.log(placeAssemblage);
 
   return isLoaded ? (
     <div>
