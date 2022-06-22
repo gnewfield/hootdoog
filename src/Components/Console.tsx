@@ -23,11 +23,6 @@ const Console = (props: ConsoleProps) => {
 
   return (
     <Card>
-      <CardHeader>
-        <Typography variant="h4" gutterBottom>
-          hootdoog time
-        </Typography>
-      </CardHeader>
       <CardContent>
         <MapsAutocomplete
           onPlaceChanged={() => {
