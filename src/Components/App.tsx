@@ -1,7 +1,5 @@
 import * as React from "react";
-import axios from "axios";
 import Container from "@mui/material/Container";
-// import { Libraries } from "@react-google-maps/api/dist/utils/make-load-script-url";
 import {
   useJsApiLoader,
   GoogleMap,
@@ -11,9 +9,8 @@ import {
 } from "@react-google-maps/api";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import GoogleMapPlaceType from "./GoogleMapPlaceType";
-import { Typography } from "@mui/material";
 import { PlaceInfo } from "./PlaceInfo";
 
 const libraries = ["places", "geometry"];
@@ -31,7 +28,7 @@ export default function App() {
     lng: number;
   }>({
     lat: 40.745,
-    lng: -73.9840,
+    lng: -73.984,
   });
 
   const [yourPlace, setYourPlace] = useState<any>(undefined);

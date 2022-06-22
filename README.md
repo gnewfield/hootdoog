@@ -20,6 +20,7 @@ Based on Atomic Habits, this is how you form the habit.
   provides a means for sharing it immmediately with their peer.
 - We need to maximize the obviousness of how to engage.
 - big buttons.
+- Perhaps having the map UI at the forefront is too much detail, overwhelming the user.
 
 ### 4. Reward - make it satisfying
 
