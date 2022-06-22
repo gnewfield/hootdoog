@@ -34,8 +34,9 @@ export default function App() {
   const [yourPlace, setYourPlace] = useState<any>(undefined);
   const [theirPlace, setTheirPlace] = useState<any>(undefined);
 
-  // markers needs to be a dictionary so you can remove the old "your place marker"
-  const [markers, setMarkers] = useState<MarkerProps[]>([]);
+  const [nearbyPlaceMarkers, setNearbyPlaceMarkers] = useState<MarkerProps[]>(
+    []
+  );
 
   const [selectedPlace, setSelectedPlace] =
     useState<google.maps.places.PlaceResult | null>(null);
@@ -47,6 +48,9 @@ export default function App() {
 
   const [distanceMatrixResponse, setDistanceMatrixResponse] =
     useState<google.maps.DistanceMatrixResponse | null>(null);
+
+  const [collocatedPlaceDetails, setCollocatedPlaceDetails] =
+    useState<any>(null);
 
   const googleMapProps: GoogleMapProps = {
     center: mapCenter,
@@ -67,7 +71,7 @@ export default function App() {
     },
   };
 
-  useMemo(() => {
+  useEffect(() => {
     if (yourPlace) {
       setMapCenter({
         lat: yourPlace.geometry.location.lat(),
@@ -119,7 +123,7 @@ export default function App() {
 
   // change the api responses to have return usememo, as right now they're not returning
   // anything lol
-  useMemo(() => {
+  useEffect(() => {
     console.log("nearby search results updated...");
 
     if (nearbySearchResults && nearbySearchResults?.length > 0) {
@@ -129,6 +133,8 @@ export default function App() {
       // distance matrix from yourPlace, theirPlace to all the found places
       // unfortunately we need the actual fastest way to get around, but can only toggle
       // one method of search at a time.
+
+      /*
       const googleMapsDistanceMatrixRequest: google.maps.DistanceMatrixRequest =
         {
           origins: [yourPlace.geometry.location, theirPlace.geometry.location],
@@ -145,19 +151,15 @@ export default function App() {
           travelMode: google.maps.TravelMode.TRANSIT,
         };
 
-      console.log(googleMapsDistanceMatrixRequest);
-
       new google.maps.DistanceMatrixService().getDistanceMatrix(
         googleMapsDistanceMatrixRequest,
         (response, status) => {
           if (status === "OK") {
-            console.log("distance matrix", response);
             setDistanceMatrixResponse(response);
-          } else {
-            console.log("distance matrix status", status);
           }
         }
       );
+      */
 
       // @ts-ignore
       const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
@@ -181,7 +183,7 @@ export default function App() {
         })
         .filter((marker) => marker !== null);
 
-      setMarkers((prevMarkers) => [...prevMarkers, ...nearbyPlaceMarkers]);
+      setNearbyPlaceMarkers(nearbyPlaceMarkers);
     }
   }, [nearbySearchResults]);
 
@@ -193,38 +195,31 @@ export default function App() {
           theirPlace,
           handleYourPlaceChanged: (place: any) => {
             setYourPlace(place);
-            if (place) {
-              setMarkers((prevState) => [
-                ...prevState,
-                {
-                  position: place.geometry.location,
-                  title: "Your place",
-                },
-              ]);
-            }
           },
           handleTheirPlaceChanged: (place: any) => {
             setTheirPlace(place);
-
-            if (place) {
-              setMarkers((prevState) => [
-                ...prevState,
-                {
-                  position: place.geometry.location,
-                  title: "Their place",
-                  clickable: true,
-                  onClick: (e) => {
-                    console.log(e);
-                  },
-                },
-              ]);
-            }
           },
         }}
       />
       {selectedPlace && <PlaceInfo place={selectedPlace} />}
       <GoogleMap {...googleMapProps}>
-        {[...new Set(markers)].map((marker) => (
+        {yourPlace && (
+          <Marker
+            {...{
+              position: yourPlace.geometry.location,
+              title: "Your place",
+            }}
+          />
+        )}
+        {theirPlace && (
+          <Marker
+            {...{
+              position: theirPlace.geometry.location,
+              title: "Their place",
+            }}
+          />
+        )}
+        {[...new Set(nearbyPlaceMarkers)].map((marker) => (
           <Marker key={marker.title} {...marker} />
         ))}
       </GoogleMap>
