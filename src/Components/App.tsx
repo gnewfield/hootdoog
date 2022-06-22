@@ -15,6 +15,7 @@ import { PlaceInfo } from "./PlaceInfo";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { AppBar, Toolbar, Typography } from "@mui/material";
+import { findBestMatch } from "string-similarity";
 
 const libraries = ["places", "geometry"];
 
@@ -179,19 +180,14 @@ export default function App() {
           console.log(vicinity);
           console.log(distanceMatrixResponse.destinationAddresses);
 
-          console.log(
-            distanceMatrixResponse.destinationAddresses.map(
-              (destinationAddress) => destinationAddress.includes(vicinity!)
-            )
-          );
+          // it's fucking street vs st...
+          // solution: use document distance
 
           if (vicinity) {
-            const distanceMatrixColumn: number =
-              distanceMatrixResponse.destinationAddresses.findIndex(
-                (destinationAddress: string) => {
-                  return destinationAddress.includes(vicinity);
-                }
-              );
+            const { bestMatchIndex: destinationIndex } = findBestMatch(
+              vicinity,
+              distanceMatrixResponse.destinationAddresses
+            );
 
             const transitTimes: {
               origin: string;
@@ -199,8 +195,9 @@ export default function App() {
             }[] = distanceMatrixResponse.rows.map(
               (row: google.maps.DistanceMatrixResponseRow, index: number) => {
                 return {
+                  destination: distanceMatrixResponse.destinationAddresses[destinationIndex], // this is mainly for sanity
                   origin: distanceMatrixResponse.originAddresses[index],
-                  times: row.elements[distanceMatrixColumn],
+                  times: row.elements[destinationIndex],
                 };
               }
             );
