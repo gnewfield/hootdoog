@@ -29,7 +29,10 @@ export default function App() {
   const [mapCenter, setMapCenter] = useState<{
     lat: number;
     lng: number;
-  }>({ lat: 48.397, lng: 2.644 });
+  }>({
+    lat: 40.745,
+    lng: -73.9840,
+  });
 
   const [yourPlace, setYourPlace] = useState<any>(undefined);
   const [theirPlace, setTheirPlace] = useState<any>(undefined);
@@ -54,7 +57,7 @@ export default function App() {
 
   const googleMapProps: GoogleMapProps = {
     center: mapCenter,
-    zoom: 15,
+    zoom: 14,
     onLoad: (map) => {
       setMap(map);
     },
