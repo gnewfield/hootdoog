@@ -11,9 +11,8 @@ import {
 } from "@react-google-maps/api";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import GoogleMapPlaceType from "./GoogleMapPlaceType";
-import { convertCompilerOptionsFromJson } from "typescript";
 import { Typography } from "@mui/material";
 import { PlaceInfo } from "./PlaceInfo";
 
@@ -46,6 +45,9 @@ export default function App() {
     google.maps.places.PlaceResult[] | null
   >(null);
 
+  const [distanceMatrixResponse, setDistanceMatrixResponse] =
+    useState<google.maps.DistanceMatrixResponse | null>(null);
+
   const googleMapProps: GoogleMapProps = {
     center: mapCenter,
     zoom: 15,
@@ -65,7 +67,7 @@ export default function App() {
     },
   };
 
-  useEffect(() => {
+  useMemo(() => {
     if (yourPlace) {
       setMapCenter({
         lat: yourPlace.geometry.location.lat(),
@@ -115,8 +117,48 @@ export default function App() {
     }
   }, [yourPlace, theirPlace]);
 
-  useEffect(() => {
-    if (nearbySearchResults) {
+  // change the api responses to have return usememo, as right now they're not returning
+  // anything lol
+  useMemo(() => {
+    console.log("nearby search results updated...");
+
+    if (nearbySearchResults && nearbySearchResults?.length > 0) {
+      console.log(
+        "found a list of nearby search results. Creating markers and computing transit times."
+      );
+      // distance matrix from yourPlace, theirPlace to all the found places
+      // unfortunately we need the actual fastest way to get around, but can only toggle
+      // one method of search at a time.
+      const googleMapsDistanceMatrixRequest: google.maps.DistanceMatrixRequest =
+        {
+          origins: [yourPlace.geometry.location, theirPlace.geometry.location],
+          destinations: nearbySearchResults
+            .map(
+              (
+                placeResult: google.maps.places.PlaceResult
+              ): google.maps.LatLng | undefined =>
+                placeResult.geometry?.location
+            )
+            .filter((placeOrUndefined: google.maps.LatLng | undefined) => {
+              return placeOrUndefined?.lat && placeOrUndefined.lng;
+            }) as google.maps.LatLng[],
+          travelMode: google.maps.TravelMode.TRANSIT,
+        };
+
+      console.log(googleMapsDistanceMatrixRequest);
+
+      new google.maps.DistanceMatrixService().getDistanceMatrix(
+        googleMapsDistanceMatrixRequest,
+        (response, status) => {
+          if (status === "OK") {
+            console.log("distance matrix", response);
+            setDistanceMatrixResponse(response);
+          } else {
+            console.log("distance matrix status", status);
+          }
+        }
+      );
+
       // @ts-ignore
       const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
         .map((placeResult: google.maps.places.PlaceResult) => {
