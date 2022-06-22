@@ -24,7 +24,7 @@ const Console = (props: ConsoleProps) => {
   return (
     <Card>
       <CardHeader
-        title={<Typography variant="h5">hoot|doog</Typography>}
+        title={<Typography variant="h5">hoot | doog</Typography>}
         subheader={
           <Typography variant="body2">find food between you guys</Typography>
         }

@@ -52,8 +52,7 @@ export default function App() {
   const [distanceMatrixResponse, setDistanceMatrixResponse] =
     useState<google.maps.DistanceMatrixResponse | null>(null);
 
-  const [collocatedPlaceDetails, setCollocatedPlaceDetails] =
-    useState<any>(null);
+  const [placeAssemblage, setPlaceAssemblage] = useState<any>(null);
 
   useEffect(() => {
     if (yourPlace) {
@@ -118,7 +117,6 @@ export default function App() {
       // unfortunately we need the actual fastest way to get around, but can only toggle
       // one method of search at a time.
 
-      /*
       const googleMapsDistanceMatrixRequest: google.maps.DistanceMatrixRequest =
         {
           origins: [yourPlace.geometry.location, theirPlace.geometry.location],
@@ -143,7 +141,6 @@ export default function App() {
           }
         }
       );
-      */
 
       // @ts-ignore
       const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
@@ -170,6 +167,57 @@ export default function App() {
       setNearbyPlaceMarkers(nearbyPlaceMarkers);
     }
   }, [nearbySearchResults]);
+
+  useEffect(() => {
+    // create the assemblage of locations
+    console.log(nearbySearchResults);
+    console.log(distanceMatrixResponse);
+    if (nearbySearchResults !== null && distanceMatrixResponse !== null) {
+      const placeAssemblage = nearbySearchResults.map(
+        (nearbySearchResult: google.maps.places.PlaceResult) => {
+          const { vicinity } = nearbySearchResult;
+          console.log(vicinity);
+          console.log(distanceMatrixResponse.destinationAddresses);
+
+          console.log(
+            distanceMatrixResponse.destinationAddresses.map(
+              (destinationAddress) => destinationAddress.includes(vicinity!)
+            )
+          );
+
+          if (vicinity) {
+            const distanceMatrixColumn: number =
+              distanceMatrixResponse.destinationAddresses.findIndex(
+                (destinationAddress: string) => {
+                  return destinationAddress.includes(vicinity);
+                }
+              );
+
+            const transitTimes: {
+              origin: string;
+              times: google.maps.DistanceMatrixResponseElement;
+            }[] = distanceMatrixResponse.rows.map(
+              (row: google.maps.DistanceMatrixResponseRow, index: number) => {
+                return {
+                  origin: distanceMatrixResponse.originAddresses[index],
+                  times: row.elements[distanceMatrixColumn],
+                };
+              }
+            );
+
+            return {
+              ...nearbySearchResult,
+              transitTimes,
+            };
+          }
+        }
+      );
+
+      setPlaceAssemblage(placeAssemblage);
+    }
+  }, [nearbySearchResults, distanceMatrixResponse]);
+
+  console.log(placeAssemblage);
 
   return isLoaded ? (
     <div>
