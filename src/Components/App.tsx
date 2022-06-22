@@ -14,6 +14,7 @@ import GoogleMapPlaceType from "./GoogleMapPlaceType";
 import { PlaceInfo } from "./PlaceInfo";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 
 const libraries = ["places", "geometry"];
 
@@ -171,77 +172,88 @@ export default function App() {
   }, [nearbySearchResults]);
 
   return isLoaded ? (
-    <Container maxWidth={false} disableGutters={true}>
-      <Paper
+    <div>
+      <Container
+        maxWidth={false}
+        disableGutters={true}
         style={{
-          width: "80%",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 10,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "auto",
         }}
-        elevation={1}
       >
-        <Console
-          {...{
-            yourPlace,
-            theirPlace,
-            handleYourPlaceChanged: (place: any) => {
-              setYourPlace(place);
-            },
-            handleTheirPlaceChanged: (place: any) => {
-              setTheirPlace(place);
-            },
-          }}
-        />
-      </Paper>
-      {selectedPlace && <PlaceInfo place={selectedPlace} />}
-      <Paper>
-        <GoogleMap
-          {...{
-            center: mapCenter,
-            zoom: 14,
-            onLoad: (map) => {
-              setMap(map);
-            },
-            mapContainerStyle: {
-              width,
-              height,
-              position: "absolute",
-              top: 0,
-              left: 0,
-            },
-            options: {
-              clickableIcons: true,
-              zoomControl: false,
-              streetViewControl: false,
-              mapTypeControl: false,
-              fullscreenControl: false,
-            },
+        <Paper
+          style={{
+            zIndex: 10,
+            margin: "1rem",
           }}
         >
-          {yourPlace && (
-            <Marker
-              {...{
-                position: yourPlace.geometry.location,
-                title: "Your place",
-              }}
-            />
-          )}
-          {theirPlace && (
-            <Marker
-              {...{
-                position: theirPlace.geometry.location,
-                title: "Their place",
-              }}
-            />
-          )}
-          {[...new Set(nearbyPlaceMarkers)].map((marker) => (
-            <Marker key={marker.title} {...marker} />
-          ))}
-        </GoogleMap>
-      </Paper>
-    </Container>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Console
+                {...{
+                  yourPlace,
+                  theirPlace,
+                  handleYourPlaceChanged: (place: any) => {
+                    setYourPlace(place);
+                  },
+                  handleTheirPlaceChanged: (place: any) => {
+                    setTheirPlace(place);
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Paper>
+        {selectedPlace && <PlaceInfo place={selectedPlace} />}
+        <Paper>
+          <GoogleMap
+            {...{
+              center: mapCenter,
+              zoom: 14,
+              onLoad: (map) => {
+                setMap(map);
+              },
+              mapContainerStyle: {
+                width,
+                height,
+                position: "absolute",
+                top: 0,
+                left: 0,
+              },
+              options: {
+                clickableIcons: true,
+                zoomControl: false,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+              },
+            }}
+          >
+            {yourPlace && (
+              <Marker
+                {...{
+                  position: yourPlace.geometry.location,
+                  title: "Your place",
+                }}
+              />
+            )}
+            {theirPlace && (
+              <Marker
+                {...{
+                  position: theirPlace.geometry.location,
+                  title: "Their place",
+                }}
+              />
+            )}
+            {[...new Set(nearbyPlaceMarkers)].map((marker) => (
+              <Marker key={marker.title} {...marker} />
+            ))}
+          </GoogleMap>
+        </Paper>
+      </Container>
+    </div>
   ) : (
     <div>Loading...</div>
   );
