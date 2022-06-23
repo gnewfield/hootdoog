@@ -158,6 +158,8 @@ export default function App() {
     }
   }, [nearbySearchResults, placeAssemblages]);
 
+  console.log(selectedPlaceAssemblage);
+
   return isLoaded ? (
     <div>
       <Container
@@ -200,8 +202,8 @@ export default function App() {
                 <PlaceInfo
                   {...{
                     name: selectedPlaceAssemblage.placeResult.name,
-                    formatted_address:
-                      selectedPlaceAssemblage.placeResult.formatted_address,
+                    vicinity: selectedPlaceAssemblage.placeResult.vicinity,
+                    transitTimes: selectedPlaceAssemblage.transitTimes,
                   }}
                 />
               </Grid>
