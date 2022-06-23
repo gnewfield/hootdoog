@@ -16,6 +16,7 @@ import Paper from "@mui/material/Paper";
 import { PlaceAssemblage } from "src/model/types";
 import { createPlaceAssemblages } from "src/controller/createPlaceAssemblages";
 import { createDistanceMatrix } from "src/controller/createDistanceMatrix";
+import { createPlaceMarkerProps } from "src/controller/createPlaceMarkerProps";
 
 const NEW_YORK_COORDINATES = {
   lat: 40.745,
@@ -42,9 +43,9 @@ export default function App() {
   const [theirPlace, setTheirPlace] =
     useState<google.maps.places.PlaceResult | null>(null);
 
-  const [nearbyPlaceMarkers, setNearbyPlaceMarkers] = useState<MarkerProps[]>(
-    []
-  );
+  const [nearbyPlaceMarkers, setNearbyPlaceMarkerProps] = useState<
+    MarkerProps[]
+  >([]);
 
   const [selectedPlaceAssemblage, setSelectedPlaceAssemblage] =
     useState<PlaceAssemblage | null>(null);
@@ -120,10 +121,8 @@ export default function App() {
       nearbySearchResults &&
       nearbySearchResults?.length > 0
     ) {
-      // distance matrix from yourPlace, theirPlace to all the found places
-      // unfortunately we need the actual fastest way to get around, but can only toggle
-      // one method of search at a time.
 
+      // has to use a callback pattern
       createDistanceMatrix({
         yourPlace,
         theirPlace,
@@ -145,49 +144,11 @@ export default function App() {
 
   useEffect(() => {
     if (nearbySearchResults.length > 0 && placeAssemblages.length > 0) {
-      // @ts-ignore
-      const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
-        .filter((placeResult: google.maps.places.PlaceResult) => {
-          return (
-            placeResult.geometry &&
-            placeResult.geometry.location &&
-            placeResult.name &&
-            placeResult.icon &&
-            placeResult.vicinity
-          );
-        })
-        .map((placeResult: google.maps.places.PlaceResult): MarkerProps => {
-          return {
-            position: placeResult!.geometry!.location!,
-            title: placeResult.name,
-            animation: window.google.maps.Animation.DROP,
-            clickable: placeAssemblages.length > 0,
-            onClick: (e: google.maps.MapMouseEvent) => {
-              const selectedPlaceAssemblageRow = placeAssemblages.find(
-                (placeAssemblageRow: PlaceAssemblage) => {
-                  return (
-                    placeAssemblageRow.placeResult.vicinity ===
-                    placeResult!.vicinity!
-                  );
-                }
-              );
-
-              if (selectedPlaceAssemblageRow) {
-                setSelectedPlaceAssemblage(selectedPlaceAssemblageRow);
-              } else {
-                console.log("no assemblage found!!");
-                console.log(placeResult);
-                console.log(placeAssemblages);
-              }
-            },
-            icon: {
-              url: placeResult!.icon!,
-              scaledSize: new window.google.maps.Size(20, 20),
-            },
-          };
-        });
-
-      setNearbyPlaceMarkers(nearbyPlaceMarkers);
+      const nearbyPlaceMarkerProps: MarkerProps[] = createPlaceMarkerProps({
+        placeAssemblages,
+        setSelectedPlaceAssemblage,
+      });
+      setNearbyPlaceMarkerProps(nearbyPlaceMarkerProps);
     }
   }, [nearbySearchResults, placeAssemblages]);
 
