@@ -1,0 +1,1275 @@
+[
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.71981419999999, "lng": -74.00007339999999 },
+      "viewport": {
+        "south": 40.7185086197085,
+        "west": -74.0015543802915,
+        "north": 40.7212065802915,
+        "east": -73.99885641970849
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    "icon_background_color": "#909CE1",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/hotel_pinlet",
+    "name": "NOMO SOHO",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 1800,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/107399298488035209223\">Raffaella Petrocelli</a>"
+        ],
+        "width": 4000
+      }
+    ],
+    "place_id": "ChIJM8mGj4lZwokRSbZBvNOVNKM",
+    "plus_code": {
+      "compound_code": "PX9X+WX New York, NY, USA",
+      "global_code": "87G7PX9X+WX"
+    },
+    "price_level": 3,
+    "rating": 4.1,
+    "reference": "ChIJM8mGj4lZwokRSbZBvNOVNKM",
+    "scope": "GOOGLE",
+    "types": [
+      "meal_takeaway",
+      "lodging",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 1360,
+    "vicinity": "9 Crosby Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "9 Crosby St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.3 km", "value": 339 },
+          "duration": { "text": "4 mins", "value": 269 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "9 Crosby St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.5 km", "value": 514 },
+          "duration": { "text": "7 mins", "value": 391 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.71907789999999, "lng": -73.9970913 },
+      "viewport": {
+        "south": 40.71780861970849,
+        "west": -73.9984116802915,
+        "north": 40.72050658029149,
+        "east": -73.99571371970848
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Ferrara Bakery & Cafe",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 2000,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100875983334126046333\">Ferrara Bakery &amp; Cafe</a>"
+        ],
+        "width": 3000
+      }
+    ],
+    "place_id": "ChIJTy8URohZwokRB9YYYDHYBKM",
+    "plus_code": {
+      "compound_code": "P293+J5 New York, NY, USA",
+      "global_code": "87G8P293+J5"
+    },
+    "price_level": 2,
+    "rating": 4.4,
+    "reference": "ChIJTy8URohZwokRB9YYYDHYBKM",
+    "scope": "GOOGLE",
+    "types": [
+      "bakery",
+      "restaurant",
+      "food",
+      "store",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 4769,
+    "vicinity": "195 Grand Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "195 Grand St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 595 },
+          "duration": { "text": "8 mins", "value": 485 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "195 Grand St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.2 km", "value": 240 },
+          "duration": { "text": "3 mins", "value": 177 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7198596, "lng": -73.99901129999999 },
+      "viewport": {
+        "south": 40.7185706197085,
+        "west": -74.0003427802915,
+        "north": 40.7212685802915,
+        "east": -73.9976448197085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Ed's Lobster Bar",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 3024,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/113555767398291700955\">Duane Richard</a>"
+        ],
+        "width": 4032
+      }
+    ],
+    "place_id": "ChIJc5nm14hZwokRocHHOlsx79M",
+    "plus_code": {
+      "compound_code": "P292+W9 New York, NY, USA",
+      "global_code": "87G8P292+W9"
+    },
+    "price_level": 2,
+    "rating": 4.4,
+    "reference": "ChIJc5nm14hZwokRocHHOlsx79M",
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 932,
+    "vicinity": "155 Grand Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "155 Grand St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 384 },
+          "duration": { "text": "5 mins", "value": 315 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "155 Grand St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 387 },
+          "duration": { "text": "5 mins", "value": 291 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7213879, "lng": -73.99756359999999 },
+      "viewport": {
+        "south": 40.7201141197085,
+        "west": -73.9989449302915,
+        "north": 40.7228120802915,
+        "east": -73.9962469697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "La Esquina",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 3024,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/117808460219123378764\">Ruwan J.</a>"
+        ],
+        "width": 4032
+      }
+    ],
+    "place_id": "ChIJibtT3ohZwokR7tX0gp0nG8U",
+    "plus_code": {
+      "compound_code": "P2C2+HX New York, NY, USA",
+      "global_code": "87G8P2C2+HX"
+    },
+    "price_level": 2,
+    "rating": 4.2,
+    "reference": "ChIJibtT3ohZwokR7tX0gp0nG8U",
+    "scope": "GOOGLE",
+    "types": [
+      "cafe",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 2176,
+    "vicinity": "114 Kenmare Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "106 Kenmare St, New York, NY 10012, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.9 km", "value": 907 },
+          "duration": { "text": "7 mins", "value": 421 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "106 Kenmare St, New York, NY 10012, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.1 km", "value": 143 },
+          "duration": { "text": "2 mins", "value": 112 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.71990359999999, "lng": -73.9972937 },
+      "viewport": {
+        "south": 40.7185259197085,
+        "west": -73.99854148029151,
+        "north": 40.7212238802915,
+        "east": -73.99584351970849
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "La Mela",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 1371,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/112926141517452355322\">La Mela</a>"
+        ],
+        "width": 2048
+      }
+    ],
+    "place_id": "ChIJEw1TVohZwokRA2vBXEexlVY",
+    "plus_code": {
+      "compound_code": "P293+X3 New York, NY, USA",
+      "global_code": "87G8P293+X3"
+    },
+    "price_level": 2,
+    "rating": 4.3,
+    "reference": "ChIJEw1TVohZwokRA2vBXEexlVY",
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 1496,
+    "vicinity": "167 Mulberry Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "167 Mulberry St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 628 },
+          "duration": { "text": "9 mins", "value": 510 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "167 Mulberry St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.2 km", "value": 211 },
+          "duration": { "text": "3 mins", "value": 158 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7188354, "lng": -73.99721250000002 },
+      "viewport": {
+        "south": 40.71768066970849,
+        "west": -73.99845163029153,
+        "north": 40.72037863029149,
+        "east": -73.9957536697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Casa D' Angelo",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 659,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/106346209283330731902\">Casa D&#39; Angelo</a>"
+        ],
+        "width": 1170
+      }
+    ],
+    "place_id": "ChIJCxhnSohZwokRxmUkfrQWLfs",
+    "plus_code": {
+      "compound_code": "P293+G4 New York, NY, USA",
+      "global_code": "87G8P293+G4"
+    },
+    "price_level": 3,
+    "rating": 4.2,
+    "reference": "ChIJCxhnSohZwokRxmUkfrQWLfs",
+    "scope": "GOOGLE",
+    "types": ["restaurant", "food", "point_of_interest", "establishment"],
+    "user_ratings_total": 483,
+    "vicinity": "146 Mulberry St Between Hester &, Grand Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "146 Mulberry St Between Hester &, Grand St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 562 },
+          "duration": { "text": "8 mins", "value": 451 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "146 Mulberry St Between Hester &, Grand St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.3 km", "value": 321 },
+          "duration": { "text": "4 mins", "value": 236 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7196823, "lng": -73.99706429999999 },
+      "viewport": {
+        "south": 40.71833021970851,
+        "west": -73.9984584802915,
+        "north": 40.7210281802915,
+        "east": -73.9957605197085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Da Nico",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 563,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/105738673161666777880\">Da Nico</a>"
+        ],
+        "width": 1200
+      }
+    ],
+    "place_id": "ChIJkwvCUIhZwokRBOF1SVW2DH8",
+    "plus_code": {
+      "compound_code": "P293+V5 New York, NY, USA",
+      "global_code": "87G8P293+V5"
+    },
+    "price_level": 2,
+    "rating": 4.3,
+    "reference": "ChIJkwvCUIhZwokRBOF1SVW2DH8",
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 2495,
+    "vicinity": "164 Mulberry Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "164 Mulberry St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 611 },
+          "duration": { "text": "8 mins", "value": 500 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "164 Mulberry St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.2 km", "value": 228 },
+          "duration": { "text": "3 mins", "value": 168 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7181584, "lng": -73.9976506 },
+      "viewport": {
+        "south": 40.7167726697085,
+        "west": -73.9990275302915,
+        "north": 40.7194706302915,
+        "east": -73.9963295697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Puglia",
+    "opening_hours": { "open_now": false },
+    "photos": [
+      {
+        "height": 3024,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/101275087215984650810\">Luis Torrealba</a>"
+        ],
+        "width": 4032
+      }
+    ],
+    "place_id": "ChIJfencLIhZwokRWDV5hTpFU74",
+    "plus_code": {
+      "compound_code": "P292+7W New York, NY, USA",
+      "global_code": "87G8P292+7W"
+    },
+    "price_level": 2,
+    "rating": 4.3,
+    "reference": "ChIJfencLIhZwokRWDV5hTpFU74",
+    "scope": "GOOGLE",
+    "types": ["restaurant", "food", "point_of_interest", "establishment"],
+    "user_ratings_total": 1021,
+    "vicinity": "189 Hester Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "189 Hester St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.5 km", "value": 475 },
+          "duration": { "text": "7 mins", "value": 401 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "189 Hester St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 387 },
+          "duration": { "text": "5 mins", "value": 289 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.71969719999999, "lng": -73.9978939 },
+      "viewport": {
+        "south": 40.7182738697085,
+        "west": -73.9992857302915,
+        "north": 40.72097183029149,
+        "east": -73.9965877697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Onieal's",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 3024,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100512018330148195066\">School Teacher</a>"
+        ],
+        "width": 4032
+      }
+    ],
+    "place_id": "ChIJEUf6rIlZwokRHhWVMHCKqCY",
+    "plus_code": {
+      "compound_code": "P292+VR New York, NY, USA",
+      "global_code": "87G8P292+VR"
+    },
+    "price_level": 2,
+    "rating": 4.3,
+    "reference": "ChIJEUf6rIlZwokRHhWVMHCKqCY",
+    "scope": "GOOGLE",
+    "types": [
+      "night_club",
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 567,
+    "vicinity": "174 Grand Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "174 Grand St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.5 km", "value": 516 },
+          "duration": { "text": "7 mins", "value": 426 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "174 Grand St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.3 km", "value": 305 },
+          "duration": { "text": "4 mins", "value": 222 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7217849, "lng": -73.99780249999999 },
+      "viewport": {
+        "south": 40.7203835197085,
+        "west": -73.9990822802915,
+        "north": 40.7230814802915,
+        "east": -73.9963843197085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Cafe Select",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 3000,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/111444671146808251214\">Eric Finkelstein</a>"
+        ],
+        "width": 4000
+      }
+    ],
+    "place_id": "ChIJ95NLJ4lZwokRJ_NbOfYEz50",
+    "plus_code": {
+      "compound_code": "P2C2+PV New York, NY, USA",
+      "global_code": "87G8P2C2+PV"
+    },
+    "price_level": 2,
+    "rating": 4.2,
+    "reference": "ChIJ95NLJ4lZwokRJ_NbOfYEz50",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "cafe",
+      "bar",
+      "food",
+      "store",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 745,
+    "vicinity": "212 Lafayette Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "212 Lafayette St, New York, NY 10012, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.9 km", "value": 889 },
+          "duration": { "text": "7 mins", "value": 400 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "212 Lafayette St, New York, NY 10012, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.2 km", "value": 184 },
+          "duration": { "text": "3 mins", "value": 153 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7180002, "lng": -73.9982677 },
+      "viewport": {
+        "south": 40.7166174697085,
+        "west": -73.9995218802915,
+        "north": 40.7193154302915,
+        "east": -73.99682391970849
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "IL Cortile",
+    "opening_hours": { "open_now": false },
+    "photos": [
+      {
+        "height": 766,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/105105682230397103866\">IL Cortile</a>"
+        ],
+        "width": 1209
+      }
+    ],
+    "place_id": "ChIJOQ8A1IlZwokRd4ZMRvOMQ3o",
+    "plus_code": {
+      "compound_code": "P292+6M New York, NY, USA",
+      "global_code": "87G8P292+6M"
+    },
+    "price_level": 2,
+    "rating": 4.4,
+    "reference": "ChIJOQ8A1IlZwokRd4ZMRvOMQ3o",
+    "scope": "GOOGLE",
+    "types": ["restaurant", "food", "point_of_interest", "establishment"],
+    "user_ratings_total": 1535,
+    "vicinity": "125 Mulberry Street #4603, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "125 Mulberry St #4603, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 442 },
+          "duration": { "text": "6 mins", "value": 363 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "125 Mulberry St #4603, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 441 },
+          "duration": { "text": "5 mins", "value": 328 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7206286, "lng": -73.9963941 },
+      "viewport": {
+        "south": 40.71916241970851,
+        "west": -73.99782343029152,
+        "north": 40.7218603802915,
+        "east": -73.9951254697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "LuAnne's Wild Ginger",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 500,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/106923778255299951844\">LuAnne&#39;s Wild Ginger</a>"
+        ],
+        "width": 889
+      }
+    ],
+    "place_id": "ChIJB-pK8ohZwokRWbnoTJHg0sM",
+    "plus_code": {
+      "compound_code": "P2C3+7C New York, NY, USA",
+      "global_code": "87G8P2C3+7C"
+    },
+    "price_level": 2,
+    "rating": 4.5,
+    "reference": "ChIJB-pK8ohZwokRWbnoTJHg0sM",
+    "scope": "GOOGLE",
+    "types": ["restaurant", "food", "point_of_interest", "establishment"],
+    "user_ratings_total": 438,
+    "vicinity": "380 Broome Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "380 Broome St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.7 km", "value": 693 },
+          "duration": { "text": "10 mins", "value": 571 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "380 Broome St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.1 km", "value": 109 },
+          "duration": { "text": "1 min", "value": 76 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7210932, "lng": -73.99782549999999 },
+      "viewport": {
+        "south": 40.7196748697085,
+        "west": -73.9992221302915,
+        "north": 40.7223728302915,
+        "east": -73.9965241697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/bar-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/bar_pinlet",
+    "name": "Despaña",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 3024,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/101308229358398783962\">Eddy</a>"
+        ],
+        "width": 4032
+      }
+    ],
+    "place_id": "ChIJZzRtHIlZwokRYU5sVES5WNM",
+    "plus_code": {
+      "compound_code": "P2C2+CV New York, NY, USA",
+      "global_code": "87G8P2C2+CV"
+    },
+    "price_level": 2,
+    "rating": 4.7,
+    "reference": "ChIJZzRtHIlZwokRYU5sVES5WNM",
+    "scope": "GOOGLE",
+    "types": [
+      "grocery_or_supermarket",
+      "bar",
+      "restaurant",
+      "food",
+      "store",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 581,
+    "vicinity": "408 Broome Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "408 Broome St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 561 },
+          "duration": { "text": "8 mins", "value": 464 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "408 Broome St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.2 km", "value": 241 },
+          "duration": { "text": "3 mins", "value": 182 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7200268, "lng": -73.9986803 },
+      "viewport": {
+        "south": 40.7186263197085,
+        "west": -74.00010838029151,
+        "north": 40.7213242802915,
+        "east": -73.99741041970849
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Landmark Coffee Shop",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 535,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/112074020802710912881\">Landmark Coffee Shop &amp; Pancake House</a>"
+        ],
+        "width": 941
+      }
+    ],
+    "place_id": "ChIJN66GpolZwokRAPJSwkC8FtE",
+    "plus_code": {
+      "compound_code": "P2C2+2G New York, NY, USA",
+      "global_code": "87G8P2C2+2G"
+    },
+    "price_level": 1,
+    "rating": 4.1,
+    "reference": "ChIJN66GpolZwokRAPJSwkC8FtE",
+    "scope": "GOOGLE",
+    "types": [
+      "cafe",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 698,
+    "vicinity": "158 Grand Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "158 Grand St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 427 },
+          "duration": { "text": "6 mins", "value": 349 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "158 Grand St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 408 },
+          "duration": { "text": "5 mins", "value": 307 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.719515, "lng": -73.996577 },
+      "viewport": {
+        "south": 40.7181372197085,
+        "west": -73.99780253029151,
+        "north": 40.7208351802915,
+        "east": -73.99510456970849
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Pho Bang",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 4000,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/107806462280537420706\">San R.</a>"
+        ],
+        "width": 3000
+      }
+    ],
+    "place_id": "ChIJzxNbXIhZwokR2aDkSZXbkIg",
+    "plus_code": {
+      "compound_code": "P293+R9 New York, NY, USA",
+      "global_code": "87G8P293+R9"
+    },
+    "price_level": 1,
+    "rating": 4.3,
+    "reference": "ChIJzxNbXIhZwokR2aDkSZXbkIg",
+    "scope": "GOOGLE",
+    "types": ["restaurant", "food", "point_of_interest", "establishment"],
+    "user_ratings_total": 679,
+    "vicinity": "157 Mott Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "157 Mott St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.7 km", "value": 689 },
+          "duration": { "text": "9 mins", "value": 558 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "157 Mott St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.1 km", "value": 145 },
+          "duration": { "text": "2 mins", "value": 110 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7180825, "lng": -73.99812430000001 },
+      "viewport": {
+        "south": 40.7167771197085,
+        "west": -73.9994053802915,
+        "north": 40.7194750802915,
+        "east": -73.9967074197085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Casa Bella",
+    "opening_hours": { "open_now": false },
+    "photos": [
+      {
+        "height": 1242,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/115822197014324736445\">Casa Bella</a>"
+        ],
+        "width": 1863
+      }
+    ],
+    "place_id": "ChIJ0Qva04lZwokRblbYm8Irh3E",
+    "plus_code": {
+      "compound_code": "P292+6Q New York, NY, USA",
+      "global_code": "87G8P292+6Q"
+    },
+    "price_level": 2,
+    "rating": 4.3,
+    "reference": "ChIJ0Qva04lZwokRblbYm8Irh3E",
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 1843,
+    "vicinity": "127 Mulberry Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "127 Mulberry St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.5 km", "value": 456 },
+          "duration": { "text": "6 mins", "value": 372 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "127 Mulberry St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 427 },
+          "duration": { "text": "5 mins", "value": 318 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.719286, "lng": -73.996697 },
+      "viewport": {
+        "south": 40.71785586970849,
+        "west": -73.9981068302915,
+        "north": 40.72055383029149,
+        "east": -73.9954088697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Bánh Mì Saigon",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 3024,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/113090154661790710275\">Khoi Nguyen</a>"
+        ],
+        "width": 4032
+      }
+    ],
+    "place_id": "ChIJLZ_KRIhZwokRUanDSCyp1x4",
+    "plus_code": {
+      "compound_code": "P293+P8 New York, NY, USA",
+      "global_code": "87G8P293+P8"
+    },
+    "price_level": 1,
+    "rating": 4.6,
+    "reference": "ChIJLZ_KRIhZwokRUanDSCyp1x4",
+    "scope": "GOOGLE",
+    "types": [
+      "meal_takeaway",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 788,
+    "vicinity": "198 Grand Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "198 Grand St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 616 },
+          "duration": { "text": "8 mins", "value": 503 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "198 Grand St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.2 km", "value": 218 },
+          "duration": { "text": "3 mins", "value": 160 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.7178645, "lng": -73.9974015 },
+      "viewport": {
+        "south": 40.7164733697085,
+        "west": -73.9986325802915,
+        "north": 40.71917133029149,
+        "east": -73.99593461970849
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Original Vincent's",
+    "opening_hours": { "open_now": false },
+    "photos": [
+      {
+        "height": 2269,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/108070105969779614914\">Original Vincent&#39;s</a>"
+        ],
+        "width": 4032
+      }
+    ],
+    "place_id": "ChIJywGXK4hZwokRGlf7GPPGaIA",
+    "plus_code": {
+      "compound_code": "P293+42 New York, NY, USA",
+      "global_code": "87G8P293+42"
+    },
+    "price_level": 2,
+    "rating": 4.2,
+    "reference": "ChIJywGXK4hZwokRGlf7GPPGaIA",
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 547,
+    "vicinity": "119 Mott Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "119 Mott St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.5 km", "value": 508 },
+          "duration": { "text": "7 mins", "value": 425 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "119 Mott St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.4 km", "value": 354 },
+          "duration": { "text": "4 mins", "value": 268 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.71900299999999, "lng": -73.99729599999999 },
+      "viewport": {
+        "south": 40.71779581970849,
+        "west": -73.99858983029151,
+        "north": 40.72049378029149,
+        "east": -73.9958918697085
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/cafe-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/cafe_pinlet",
+    "name": "Caffé Palermo",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 3456,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100589456862273922982\">Daniele Tomaselli</a>"
+        ],
+        "width": 4608
+      }
+    ],
+    "place_id": "ChIJu6AxSohZwokR-C-gCJcQewI",
+    "plus_code": {
+      "compound_code": "P293+J3 New York, NY, USA",
+      "global_code": "87G8P293+J3"
+    },
+    "price_level": 2,
+    "rating": 4.2,
+    "reference": "ChIJu6AxSohZwokR-C-gCJcQewI",
+    "scope": "GOOGLE",
+    "types": [
+      "cafe",
+      "bakery",
+      "restaurant",
+      "food",
+      "store",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 1057,
+    "vicinity": "148 Mulberry Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "148 Mulberry St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 577 },
+          "duration": { "text": "8 mins", "value": 462 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "148 Mulberry St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.3 km", "value": 306 },
+          "duration": { "text": "4 mins", "value": 225 },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  {
+    "business_status": "OPERATIONAL",
+    "geometry": {
+      "location": { "lat": 40.71800479999999, "lng": -74.0006269 },
+      "viewport": {
+        "south": 40.7166904197085,
+        "west": -74.00209753029151,
+        "north": 40.7193883802915,
+        "east": -73.99939956970849
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "name": "Popeyes Louisiana Kitchen",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 1192,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/107832852632834207486\">Popeyes Louisiana Kitchen</a>"
+        ],
+        "width": 2119
+      }
+    ],
+    "place_id": "ChIJob8wvydawokR2wYjyRJeEPU",
+    "plus_code": {
+      "compound_code": "PX9X+6P New York, NY, USA",
+      "global_code": "87G7PX9X+6P"
+    },
+    "price_level": 1,
+    "rating": 3.9,
+    "reference": "ChIJob8wvydawokR2wYjyRJeEPU",
+    "scope": "GOOGLE",
+    "types": ["restaurant", "food", "point_of_interest", "establishment"],
+    "user_ratings_total": 834,
+    "vicinity": "96 Walker Street, New York",
+    "html_attributions": [],
+    "transitTimes": [
+      {
+        "destination": "96 Walker St, New York, NY 10013, USA",
+        "origin": "394 Broadway, New York, NY 10013, USA",
+        "times": {
+          "distance": { "text": "0.1 km", "value": 137 },
+          "duration": { "text": "2 mins", "value": 118 },
+          "status": "OK"
+        }
+      },
+      {
+        "destination": "96 Walker St, New York, NY 10013, USA",
+        "origin": "183 Mott St, New York, NY 10012, USA",
+        "times": {
+          "distance": { "text": "0.6 km", "value": 634 },
+          "duration": { "text": "8 mins", "value": 475 },
+          "status": "OK"
+        }
+      }
+    ]
+  }
+]

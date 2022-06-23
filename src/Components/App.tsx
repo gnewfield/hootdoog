@@ -15,6 +15,22 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { findBestMatch } from "string-similarity";
 
+type TransitPair = {
+  destination: string;
+  origin: string;
+  times: google.maps.DistanceMatrixResponseElement;
+};
+
+type PlaceAssemblage = {
+  transitTimes: TransitPair[];
+  placeResult: google.maps.places.PlaceResult;
+};
+
+const NEW_YORK_COORDINATES = {
+  lat: 40.745,
+  lng: -73.984,
+};
+
 const libraries = ["places", "geometry"];
 
 export default function App() {
@@ -28,20 +44,18 @@ export default function App() {
   const [mapCenter, setMapCenter] = useState<{
     lat: number;
     lng: number;
-  }>({
-    lat: 40.745,
-    lng: -73.984,
-  });
+  }>(NEW_YORK_COORDINATES);
 
-  const [yourPlace, setYourPlace] = useState<any>(undefined);
-  const [theirPlace, setTheirPlace] = useState<any>(undefined);
+  const [yourPlace, setYourPlace] =
+    useState<google.maps.places.PlaceResult | null>(null);
+  const [theirPlace, setTheirPlace] =
+    useState<google.maps.places.PlaceResult | null>(null);
 
   const [nearbyPlaceMarkers, setNearbyPlaceMarkers] = useState<MarkerProps[]>(
     []
   );
 
-  const [selectedPlace, setSelectedPlace] =
-    useState<google.maps.places.PlaceResult | null>(null);
+  const [selectedPlace, setSelectedPlace] = useState<any>(null);
 
   const [map, setMap] = useState<any>(null);
   const [nearbySearchResults, setNearbySearchResults] = useState<
@@ -51,30 +65,30 @@ export default function App() {
   const [distanceMatrixResponse, setDistanceMatrixResponse] =
     useState<google.maps.DistanceMatrixResponse | null>(null);
 
-  const [placeAssemblage, setPlaceAssemblage] = useState<any>(null);
+  const [placeAssemblage, setPlaceAssemblage] = useState<PlaceAssemblage[]>([]);
 
   useEffect(() => {
     if (yourPlace) {
       setMapCenter({
-        lat: yourPlace.geometry.location.lat(),
-        lng: yourPlace.geometry.location.lng(),
+        lat: yourPlace!.geometry!.location!.lat(),
+        lng: yourPlace!.geometry!.location!.lng(),
       });
     }
     if (yourPlace && theirPlace) {
       // make the map fit the boundary
       const bounds = new window.google.maps.LatLngBounds();
-      bounds.extend(yourPlace.geometry.location);
-      bounds.extend(theirPlace.geometry.location);
+      bounds.extend(yourPlace!.geometry!.location!);
+      bounds.extend(theirPlace!.geometry!.location!);
       map.fitBounds(bounds);
 
       const newCenter = {
         lat:
-          (yourPlace.geometry.location.lat() +
-            theirPlace.geometry.location.lat()) /
+          (yourPlace!.geometry!.location!.lat() +
+            theirPlace!.geometry!.location!.lat()) /
           2,
         lng:
-          (yourPlace.geometry.location.lng() +
-            theirPlace.geometry.location.lng()) /
+          (yourPlace!.geometry!.location!.lng() +
+            theirPlace!.geometry!.location!.lng()) /
           2,
       };
 
@@ -83,8 +97,8 @@ export default function App() {
       // calculate the distance between the two places
       const distance =
         window.google.maps.geometry.spherical.computeDistanceBetween(
-          yourPlace.geometry.location,
-          theirPlace.geometry.location
+          yourPlace!.geometry!.location!,
+          theirPlace!.geometry!.location!
         );
 
       // do a search for places around
@@ -113,7 +127,10 @@ export default function App() {
 
       const googleMapsDistanceMatrixRequest: google.maps.DistanceMatrixRequest =
         {
-          origins: [yourPlace.geometry.location, theirPlace.geometry.location],
+          origins: [
+            yourPlace!.geometry!.location!,
+            theirPlace!.geometry!.location!,
+          ],
           destinations: nearbySearchResults
             .map(
               (
@@ -138,25 +155,37 @@ export default function App() {
 
       // @ts-ignore
       const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
-        .map((placeResult: google.maps.places.PlaceResult) => {
-          if (placeResult.geometry) {
-            return {
-              position: placeResult?.geometry?.location!,
-              title: placeResult?.name,
-              animation: window.google.maps.Animation.DROP,
-              onClick: (e: google.maps.MapMouseEvent) => {
-                setSelectedPlace(placeResult);
-              },
-              icon: {
-                url: placeResult.icon,
-                scaledSize: new window.google.maps.Size(15, 15),
-              },
-            };
-          } else {
-            return null;
-          }
+        .filter((placeResult: google.maps.places.PlaceResult) => {
+          return (
+            placeResult.geometry &&
+            placeResult.geometry.location &&
+            placeResult.name &&
+            placeResult.icon &&
+            placeResult.vicinity
+          );
         })
-        .filter((marker) => marker !== null);
+        .map((placeResult: google.maps.places.PlaceResult): MarkerProps => {
+          return {
+            position: placeResult!.geometry!.location!,
+            title: placeResult.name,
+            animation: window.google.maps.Animation.DROP,
+            onClick: (e: google.maps.MapMouseEvent) => {
+              const selectedPlaceAssemblageRow = placeAssemblage.find(
+                (placeAssemblageRow: PlaceAssemblage) => {
+                  return (
+                    placeAssemblageRow.placeResult.vicinity ===
+                    placeResult!.vicinity!
+                  );
+                }
+              );
+              setSelectedPlace(selectedPlaceAssemblageRow);
+            },
+            icon: {
+              url: placeResult!.icon!,
+              scaledSize: new window.google.maps.Size(20, 20),
+            },
+          };
+        });
 
       setNearbyPlaceMarkers(nearbyPlaceMarkers);
     }
@@ -166,44 +195,46 @@ export default function App() {
     // create the assemblage of locations
     if (nearbySearchResults !== null && distanceMatrixResponse !== null) {
       const placeAssemblage = nearbySearchResults.map(
-        (nearbySearchResult: google.maps.places.PlaceResult) => {
-          const { vicinity } = nearbySearchResult;
+        (
+          nearbySearchResult: google.maps.places.PlaceResult
+        ): PlaceAssemblage => {
+          const { vicinity = "" } = nearbySearchResult;
 
           // it's fucking street vs st...
           // solution: use document distance
-          if (vicinity) {
-            const { bestMatchIndex: destinationIndex } = findBestMatch(
-              vicinity,
-              distanceMatrixResponse.destinationAddresses
-            );
+          const { destinationAddresses, rows, originAddresses } =
+            distanceMatrixResponse;
 
-            const transitTimes: {
-              origin: string;
-              times: google.maps.DistanceMatrixResponseElement;
-            }[] = distanceMatrixResponse.rows.map(
-              (row: google.maps.DistanceMatrixResponseRow, index: number) => {
-                return {
-                  destination:
-                    distanceMatrixResponse.destinationAddresses[
-                      destinationIndex
-                    ], // this is mainly for sanity
-                  origin: distanceMatrixResponse.originAddresses[index],
-                  times: row.elements[destinationIndex],
-                };
-              }
-            );
+          const { bestMatchIndex: destinationIndex } = findBestMatch(
+            vicinity,
+            destinationAddresses
+          );
 
-            return {
-              ...nearbySearchResult,
-              transitTimes,
-            };
-          }
+          const transitTimes: TransitPair[] = rows.map(
+            (
+              row: google.maps.DistanceMatrixResponseRow,
+              index: number
+            ): TransitPair => {
+              return {
+                destination: destinationAddresses[destinationIndex], // this is mainly for sanity
+                origin: originAddresses[index],
+                times: row.elements[destinationIndex],
+              };
+            }
+          );
+
+          return {
+            transitTimes,
+            placeResult: nearbySearchResult,
+          };
         }
       );
 
       setPlaceAssemblage(placeAssemblage);
     }
   }, [nearbySearchResults, distanceMatrixResponse]);
+
+  console.log(selectedPlace);
 
   return isLoaded ? (
     <div>
@@ -238,9 +269,13 @@ export default function App() {
                 }}
               />
             </Grid>
+            {selectedPlace && (
+              <Grid item>
+                <PlaceInfo />
+              </Grid>
+            )}
           </Grid>
         </Paper>
-        {selectedPlace && <PlaceInfo place={selectedPlace} />}
         <Paper>
           <GoogleMap
             {...{
@@ -268,7 +303,7 @@ export default function App() {
             {yourPlace && (
               <Marker
                 {...{
-                  position: yourPlace.geometry.location,
+                  position: yourPlace!.geometry!.location!,
                   title: "Your place",
                 }}
               />
@@ -276,7 +311,7 @@ export default function App() {
             {theirPlace && (
               <Marker
                 {...{
-                  position: theirPlace.geometry.location,
+                  position: theirPlace!.geometry!.location!,
                   title: "Their place",
                 }}
               />

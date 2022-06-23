@@ -16,8 +16,8 @@ const Console = (props: ConsoleProps) => {
     handleTheirPlaceChanged,
   } = props;
 
-  const [yourRawLocation, setYourRawLocation] = useState<any>(undefined);
-  const [theirRawLocation, setTheirRawLocation] = useState<any>(undefined);
+  const [yourRawLocation, setYourRawLocation] = useState<string>("");
+  const [theirRawLocation, setTheirRawLocation] = useState<string>("");
   const [yourAutocomplete, setYourAutocomplete] = useState<any>(undefined);
   const [theirAutocomplete, setTheirAutocomplete] = useState<any>(undefined);
 
@@ -32,7 +32,8 @@ const Console = (props: ConsoleProps) => {
       <CardContent>
         <MapsAutocomplete
           onPlaceChanged={() => {
-            const place = yourAutocomplete.getPlace();
+            const place: google.maps.places.PlaceResult =
+              yourAutocomplete.getPlace();
             handleYourPlaceChanged(place);
           }}
           onLoad={(autocomplete) => {
@@ -51,7 +52,8 @@ const Console = (props: ConsoleProps) => {
         <br />
         <MapsAutocomplete
           onPlaceChanged={() => {
-            const place = theirAutocomplete.getPlace();
+            const place: google.maps.places.PlaceResult =
+              theirAutocomplete.getPlace();
             handleTheirPlaceChanged(place);
           }}
           onLoad={(autocomplete) => {
