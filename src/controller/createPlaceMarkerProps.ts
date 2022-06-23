@@ -4,8 +4,10 @@ import { PlaceAssemblage } from "src/model/types";
 const createPlaceMarkerProps = (args: {
   placeAssemblages: PlaceAssemblage[];
   setSelectedPlaceAssemblage: any;
+  nearbySearchResults: google.maps.places.PlaceResult[];
 }): MarkerProps[] => {
-  const { placeAssemblages, setSelectedPlaceAssemblage } = args;
+  const { placeAssemblages, setSelectedPlaceAssemblage, nearbySearchResults } =
+    args;
 
   // @ts-ignore
   const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults

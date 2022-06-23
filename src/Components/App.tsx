@@ -64,6 +64,9 @@ export default function App() {
     []
   );
 
+  // order of the effects matters!!
+
+  // toggle map center, calculate distance (todo: separate)
   useEffect(() => {
     if (yourPlace) {
       setMapCenter({
@@ -114,6 +117,7 @@ export default function App() {
     }
   }, [yourPlace, theirPlace]);
 
+  // create distance matrix
   useEffect(() => {
     if (
       yourPlace &&
@@ -121,7 +125,6 @@ export default function App() {
       nearbySearchResults &&
       nearbySearchResults?.length > 0
     ) {
-
       // has to use a callback pattern
       createDistanceMatrix({
         yourPlace,
@@ -132,6 +135,7 @@ export default function App() {
     }
   }, [nearbySearchResults]);
 
+  // create place assemblages
   useEffect(() => {
     if (nearbySearchResults !== null && distanceMatrixResponse !== null) {
       const placeAssemblages: PlaceAssemblage[] = createPlaceAssemblages(
@@ -142,20 +146,17 @@ export default function App() {
     }
   }, [nearbySearchResults, distanceMatrixResponse]);
 
+  // create markers
   useEffect(() => {
     if (nearbySearchResults.length > 0 && placeAssemblages.length > 0) {
       const nearbyPlaceMarkerProps: MarkerProps[] = createPlaceMarkerProps({
         placeAssemblages,
         setSelectedPlaceAssemblage,
+        nearbySearchResults,
       });
       setNearbyPlaceMarkerProps(nearbyPlaceMarkerProps);
     }
   }, [nearbySearchResults, placeAssemblages]);
-
-  console.log("nearbySearchResults", nearbySearchResults);
-  console.log("placeAssemblages", placeAssemblages);
-  console.log("nearbyPlaceMarkers", nearbyPlaceMarkers);
-  console.log("selectedPlaceAssemblage", selectedPlaceAssemblage);
 
   return isLoaded ? (
     <div>
@@ -196,7 +197,13 @@ export default function App() {
             </Grid>
             {selectedPlaceAssemblage && (
               <Grid item>
-                <PlaceInfo />
+                <PlaceInfo
+                  {...{
+                    name: selectedPlaceAssemblage.placeResult.name,
+                    formatted_address:
+                      selectedPlaceAssemblage.placeResult.formatted_address,
+                  }}
+                />
               </Grid>
             )}
           </Grid>
