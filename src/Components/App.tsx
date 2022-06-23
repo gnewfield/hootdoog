@@ -55,7 +55,8 @@ export default function App() {
     []
   );
 
-  const [selectedPlace, setSelectedPlace] = useState<any>(null);
+  const [selectedPlaceAssemblage, setSelectedPlaceAssemblage] =
+    useState<PlaceAssemblage | null>(null);
 
   const [map, setMap] = useState<any>(null);
   const [nearbySearchResults, setNearbySearchResults] = useState<
@@ -178,7 +179,12 @@ export default function App() {
                   );
                 }
               );
-              setSelectedPlace(selectedPlaceAssemblageRow);
+
+              if (selectedPlaceAssemblageRow) {
+                setSelectedPlaceAssemblage(selectedPlaceAssemblageRow);
+              } else {
+                console.log("no assemblage found!!");
+              }
             },
             icon: {
               url: placeResult!.icon!,
@@ -234,7 +240,7 @@ export default function App() {
     }
   }, [nearbySearchResults, distanceMatrixResponse]);
 
-  console.log(selectedPlace);
+  console.log(selectedPlaceAssemblage);
 
   return isLoaded ? (
     <div>
@@ -260,16 +266,20 @@ export default function App() {
                 {...{
                   yourPlace,
                   theirPlace,
-                  handleYourPlaceChanged: (place: any) => {
+                  handleYourPlaceChanged: (
+                    place: google.maps.places.PlaceResult
+                  ) => {
                     setYourPlace(place);
                   },
-                  handleTheirPlaceChanged: (place: any) => {
+                  handleTheirPlaceChanged: (
+                    place: google.maps.places.PlaceResult
+                  ) => {
                     setTheirPlace(place);
                   },
                 }}
               />
             </Grid>
-            {selectedPlace && (
+            {selectedPlaceAssemblage && (
               <Grid item>
                 <PlaceInfo />
               </Grid>
