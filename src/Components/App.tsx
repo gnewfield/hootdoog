@@ -204,6 +204,10 @@ export default function App() {
                     name: selectedPlaceAssemblage.placeResult.name,
                     vicinity: selectedPlaceAssemblage.placeResult.vicinity,
                     transitTimes: selectedPlaceAssemblage.transitTimes,
+                    priceLevel: selectedPlaceAssemblage.placeResult.price_level,
+                    reviewCount:
+                      selectedPlaceAssemblage.placeResult.user_ratings_total,
+                    rating: selectedPlaceAssemblage.placeResult.rating,
                   }}
                 />
               </Grid>
