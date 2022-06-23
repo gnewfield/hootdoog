@@ -13,18 +13,9 @@ import GoogleMapPlaceType from "./GoogleMapPlaceType";
 import { PlaceInfo } from "./PlaceInfo";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { findBestMatch } from "string-similarity";
-
-type TransitPair = {
-  destination: string;
-  origin: string;
-  times: google.maps.DistanceMatrixResponseElement;
-};
-
-type PlaceAssemblage = {
-  transitTimes: TransitPair[];
-  placeResult: google.maps.places.PlaceResult;
-};
+import { PlaceAssemblage } from "src/model/types";
+import { createPlaceAssemblages } from "src/controller/createPlaceAssemblages";
+import { createDistanceMatrix } from "src/controller/createDistanceMatrix";
 
 const NEW_YORK_COORDINATES = {
   lat: 40.745,
@@ -123,81 +114,32 @@ export default function App() {
   }, [yourPlace, theirPlace]);
 
   useEffect(() => {
-    if (nearbySearchResults && nearbySearchResults?.length > 0) {
+    if (
+      yourPlace &&
+      theirPlace &&
+      nearbySearchResults &&
+      nearbySearchResults?.length > 0
+    ) {
       // distance matrix from yourPlace, theirPlace to all the found places
       // unfortunately we need the actual fastest way to get around, but can only toggle
       // one method of search at a time.
 
-      const googleMapsDistanceMatrixRequest: google.maps.DistanceMatrixRequest =
-        {
-          origins: [
-            yourPlace!.geometry!.location!,
-            theirPlace!.geometry!.location!,
-          ],
-          destinations: nearbySearchResults
-            .map(
-              (
-                placeResult: google.maps.places.PlaceResult
-              ): google.maps.LatLng | undefined =>
-                placeResult.geometry?.location
-            )
-            .filter((placeOrUndefined: google.maps.LatLng | undefined) => {
-              return placeOrUndefined?.lat && placeOrUndefined.lng;
-            }) as google.maps.LatLng[],
-          travelMode: google.maps.TravelMode.TRANSIT,
-        };
-
-      new google.maps.DistanceMatrixService().getDistanceMatrix(
-        googleMapsDistanceMatrixRequest,
-        (response, status) => {
-          if (status === "OK") {
-            setDistanceMatrixResponse(response);
-          }
-        }
-      );
+      createDistanceMatrix({
+        yourPlace,
+        theirPlace,
+        nearbySearchResults,
+        setDistanceMatrixResponse,
+      });
     }
   }, [nearbySearchResults]);
 
-  // create the assemblage of locations
   useEffect(() => {
     if (nearbySearchResults !== null && distanceMatrixResponse !== null) {
-      const placeAssemblage = nearbySearchResults.map(
-        (
-          nearbySearchResult: google.maps.places.PlaceResult
-        ): PlaceAssemblage => {
-          const { vicinity = "" } = nearbySearchResult;
-
-          // it's fucking street vs st...
-          // solution: use document distance
-          const { destinationAddresses, rows, originAddresses } =
-            distanceMatrixResponse;
-
-          const { bestMatchIndex: destinationIndex } = findBestMatch(
-            vicinity,
-            destinationAddresses
-          );
-
-          const transitTimes: TransitPair[] = rows.map(
-            (
-              row: google.maps.DistanceMatrixResponseRow,
-              index: number
-            ): TransitPair => {
-              return {
-                destination: destinationAddresses[destinationIndex], // this is mainly for sanity
-                origin: originAddresses[index],
-                times: row.elements[destinationIndex],
-              };
-            }
-          );
-
-          return {
-            transitTimes,
-            placeResult: nearbySearchResult,
-          };
-        }
+      const placeAssemblages: PlaceAssemblage[] = createPlaceAssemblages(
+        nearbySearchResults,
+        distanceMatrixResponse
       );
-
-      setPlaceAssemblages(placeAssemblage);
+      setPlaceAssemblages(placeAssemblages);
     }
   }, [nearbySearchResults, distanceMatrixResponse]);
 
