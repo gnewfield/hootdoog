@@ -60,13 +60,17 @@ export default function App() {
 
   const [map, setMap] = useState<any>(null);
   const [nearbySearchResults, setNearbySearchResults] = useState<
-    google.maps.places.PlaceResult[] | null
-  >(null);
+    google.maps.places.PlaceResult[]
+  >([]);
+  const [nearbySearchResultsError, setNearbySearchResultsError] =
+    useState<any>(null);
 
   const [distanceMatrixResponse, setDistanceMatrixResponse] =
     useState<google.maps.DistanceMatrixResponse | null>(null);
 
-  const [placeAssemblage, setPlaceAssemblage] = useState<PlaceAssemblage[]>([]);
+  const [placeAssemblages, setPlaceAssemblages] = useState<PlaceAssemblage[]>(
+    []
+  );
 
   useEffect(() => {
     if (yourPlace) {
@@ -111,15 +115,13 @@ export default function App() {
         },
         (results, status) => {
           if (status === "OK") {
-            setNearbySearchResults(results);
+            setNearbySearchResults(results || []);
           }
         }
       );
     }
   }, [yourPlace, theirPlace]);
 
-  // change the api responses to have return usememo, as right now they're not returning
-  // anything lol
   useEffect(() => {
     if (nearbySearchResults && nearbySearchResults?.length > 0) {
       // distance matrix from yourPlace, theirPlace to all the found places
@@ -153,52 +155,11 @@ export default function App() {
           }
         }
       );
-
-      // @ts-ignore
-      const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
-        .filter((placeResult: google.maps.places.PlaceResult) => {
-          return (
-            placeResult.geometry &&
-            placeResult.geometry.location &&
-            placeResult.name &&
-            placeResult.icon &&
-            placeResult.vicinity
-          );
-        })
-        .map((placeResult: google.maps.places.PlaceResult): MarkerProps => {
-          return {
-            position: placeResult!.geometry!.location!,
-            title: placeResult.name,
-            animation: window.google.maps.Animation.DROP,
-            onClick: (e: google.maps.MapMouseEvent) => {
-              const selectedPlaceAssemblageRow = placeAssemblage.find(
-                (placeAssemblageRow: PlaceAssemblage) => {
-                  return (
-                    placeAssemblageRow.placeResult.vicinity ===
-                    placeResult!.vicinity!
-                  );
-                }
-              );
-
-              if (selectedPlaceAssemblageRow) {
-                setSelectedPlaceAssemblage(selectedPlaceAssemblageRow);
-              } else {
-                console.log("no assemblage found!!");
-              }
-            },
-            icon: {
-              url: placeResult!.icon!,
-              scaledSize: new window.google.maps.Size(20, 20),
-            },
-          };
-        });
-
-      setNearbyPlaceMarkers(nearbyPlaceMarkers);
     }
   }, [nearbySearchResults]);
 
+  // create the assemblage of locations
   useEffect(() => {
-    // create the assemblage of locations
     if (nearbySearchResults !== null && distanceMatrixResponse !== null) {
       const placeAssemblage = nearbySearchResults.map(
         (
@@ -236,11 +197,62 @@ export default function App() {
         }
       );
 
-      setPlaceAssemblage(placeAssemblage);
+      setPlaceAssemblages(placeAssemblage);
     }
   }, [nearbySearchResults, distanceMatrixResponse]);
 
-  console.log(selectedPlaceAssemblage);
+  useEffect(() => {
+    if (nearbySearchResults.length > 0 && placeAssemblages.length > 0) {
+      // @ts-ignore
+      const nearbyPlaceMarkers: MarkerProps[] = nearbySearchResults
+        .filter((placeResult: google.maps.places.PlaceResult) => {
+          return (
+            placeResult.geometry &&
+            placeResult.geometry.location &&
+            placeResult.name &&
+            placeResult.icon &&
+            placeResult.vicinity
+          );
+        })
+        .map((placeResult: google.maps.places.PlaceResult): MarkerProps => {
+          return {
+            position: placeResult!.geometry!.location!,
+            title: placeResult.name,
+            animation: window.google.maps.Animation.DROP,
+            clickable: placeAssemblages.length > 0,
+            onClick: (e: google.maps.MapMouseEvent) => {
+              const selectedPlaceAssemblageRow = placeAssemblages.find(
+                (placeAssemblageRow: PlaceAssemblage) => {
+                  return (
+                    placeAssemblageRow.placeResult.vicinity ===
+                    placeResult!.vicinity!
+                  );
+                }
+              );
+
+              if (selectedPlaceAssemblageRow) {
+                setSelectedPlaceAssemblage(selectedPlaceAssemblageRow);
+              } else {
+                console.log("no assemblage found!!");
+                console.log(placeResult);
+                console.log(placeAssemblages);
+              }
+            },
+            icon: {
+              url: placeResult!.icon!,
+              scaledSize: new window.google.maps.Size(20, 20),
+            },
+          };
+        });
+
+      setNearbyPlaceMarkers(nearbyPlaceMarkers);
+    }
+  }, [nearbySearchResults, placeAssemblages]);
+
+  console.log("nearbySearchResults", nearbySearchResults);
+  console.log("placeAssemblages", placeAssemblages);
+  console.log("nearbyPlaceMarkers", nearbyPlaceMarkers);
+  console.log("selectedPlaceAssemblage", selectedPlaceAssemblage);
 
   return isLoaded ? (
     <div>
