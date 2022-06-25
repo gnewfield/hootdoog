@@ -3,27 +3,19 @@ import { Autocomplete as MapsAutocomplete } from "@react-google-maps/api";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from "@mui/material/Switch";
 import React from "react";
 import { useState } from "react";
 
 type ConsoleProps = any;
 
-const Console = (props: ConsoleProps) => {
+const SharedConsole = (props: ConsoleProps) => {
   const {
-    yourPlace,
-    handleYourPlaceChanged,
+    name,
     theirPlace,
-    handleTheirPlaceChanged,
-    linkSharingMode,
-    setLinkSharingMode
+    handleTheirPlaceChanged
   } = props;
 
-  const [yourRawLocation, setYourRawLocation] = useState<string>("");
   const [theirRawLocation, setTheirRawLocation] = useState<string>("");
-  const [yourAutocomplete, setYourAutocomplete] = useState<any>(undefined);
   const [theirAutocomplete, setTheirAutocomplete] = useState<any>(undefined);
 
   return (
@@ -35,29 +27,9 @@ const Console = (props: ConsoleProps) => {
         }
       />
       <CardContent>
-        <FormGroup style={{margin: '10px'}}>
-          <FormControlLabel control={<Switch checked={linkSharingMode} onChange={() => setLinkSharingMode(!linkSharingMode)}/>} label="Link Sharing" />
-        </FormGroup>
-        <MapsAutocomplete
-          onPlaceChanged={() => {
-            const place: google.maps.places.PlaceResult =
-              yourAutocomplete.getPlace();
-            handleYourPlaceChanged(place);
-          }}
-          onLoad={(autocomplete) => {
-            setYourAutocomplete(autocomplete);
-          }}
-        >
-          <TextField
-            onChange={(e) => {
-              handleYourPlaceChanged(undefined);
-              setYourRawLocation(e.target.value);
-            }}
-            label="Your place"
-            value={yourPlace?.formatted_address ?? yourRawLocation}
-            fullWidth
-          />
-        </MapsAutocomplete>
+        <Typography>
+            {name}'s location is mapped. Enter yours to search in between.
+        </Typography>
         <div style={{margin: '25px'}} />
         <MapsAutocomplete
           onPlaceChanged={() => {
@@ -70,7 +42,7 @@ const Console = (props: ConsoleProps) => {
           }}
         >
           <TextField
-            label="Their place"
+            label="Your place"
             onChange={(e) => {
               handleTheirPlaceChanged(undefined);
               setTheirRawLocation(e.target.value);
@@ -84,4 +56,4 @@ const Console = (props: ConsoleProps) => {
   );
 };
 
-export { Console };
+export { SharedConsole };

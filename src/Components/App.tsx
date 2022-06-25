@@ -8,6 +8,8 @@ import {
 } from "@react-google-maps/api";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { Console } from "./Console";
+import { StartConsole } from "./StartConsole";
+import { SharedConsole } from "./SharedConsole";
 import { useEffect, useState } from "react";
 import GoogleMapPlaceType from "./GoogleMapPlaceType";
 import { PlaceInfo } from "./PlaceInfo";
@@ -38,6 +40,13 @@ export default function App() {
     lng: number;
   }>(NEW_YORK_COORDINATES);
 
+  const params = new URLSearchParams(window.location.search);
+  const [name, setName] =
+    useState<string | null>(params.get("name") || null);
+  const [sharedPlaceId, setSharedPlaceId] =
+    useState<string | null>(params.get("sharedPlaceId") || null);
+  const [linkSharingMode, setLinkSharingMode] =
+    useState<boolean>(name && sharedPlaceId ? true : false);
   const [yourPlace, setYourPlace] =
     useState<google.maps.places.PlaceResult | null>(null);
   const [theirPlace, setTheirPlace] =
@@ -65,6 +74,13 @@ export default function App() {
   );
 
   // order of the effects matters!!
+  useEffect(() => {
+    if (map && sharedPlaceId) {
+      const service = new google.maps.places.PlacesService(map);
+      service.getDetails({placeId: sharedPlaceId }, (place) => setYourPlace(place));
+    }
+  }, [map])
+  
 
   // toggle map center, calculate distance (todo: separate)
   useEffect(() => {
@@ -160,6 +176,56 @@ export default function App() {
 
   console.log(selectedPlaceAssemblage);
 
+  const getConsole = () => {
+    if (linkSharingMode && name && yourPlace) {
+      return <SharedConsole
+                {...{
+                  name,
+                  theirPlace,
+                  handleTheirPlaceChanged: (
+                    place: google.maps.places.PlaceResult
+                  ) => {
+                    setTheirPlace(place);
+                  },
+                  linkSharingMode,
+                  setLinkSharingMode,
+                }}
+              />
+    } else if (linkSharingMode) {
+      return <StartConsole
+                {...{
+                  yourPlace,
+                  handleYourPlaceChanged: (
+                    place: google.maps.places.PlaceResult
+                  ) => {
+                    setYourPlace(place);
+                  },
+                  linkSharingMode,
+                  setLinkSharingMode,
+                }}
+              />
+    } else {
+        return <Console
+                  {...{
+                    yourPlace,
+                    theirPlace,
+                    handleYourPlaceChanged: (
+                      place: google.maps.places.PlaceResult
+                    ) => {
+                      setYourPlace(place);
+                    },
+                    handleTheirPlaceChanged: (
+                      place: google.maps.places.PlaceResult
+                    ) => {
+                      setTheirPlace(place);
+                    },
+                    linkSharingMode,
+                    setLinkSharingMode,
+                  }}
+                />
+    }
+  };
+
   return isLoaded ? (
     <div>
       <Container
@@ -167,9 +233,9 @@ export default function App() {
         disableGutters={true}
         style={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "auto",
+          alignItems: "left",
+          justifyContent: "left",
+          margin: "auto"
         }}
       >
         <Paper
@@ -180,25 +246,10 @@ export default function App() {
         >
           <Grid container spacing={2}>
             <Grid item>
-              <Console
-                {...{
-                  yourPlace,
-                  theirPlace,
-                  handleYourPlaceChanged: (
-                    place: google.maps.places.PlaceResult
-                  ) => {
-                    setYourPlace(place);
-                  },
-                  handleTheirPlaceChanged: (
-                    place: google.maps.places.PlaceResult
-                  ) => {
-                    setTheirPlace(place);
-                  },
-                }}
-              />
+              {getConsole()}
             </Grid>
             {selectedPlaceAssemblage && (
-              <Grid item>
+            <Grid item>
                 <PlaceInfo
                   {...{
                     name: selectedPlaceAssemblage.placeResult.name,
